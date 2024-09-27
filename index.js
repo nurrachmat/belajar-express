@@ -78,27 +78,7 @@ app.get("/prodi", (req, res) => {
             nama: "Informatika",
             fakultas: "FIKR",
             singkatan: "IF"
-        },
-        {
-            nama: "Teknik Elektro",
-            fakultas: "FIKR",
-            singkatan: "TE"
-        },
-        {
-            nama: "Manajemen Informatika",
-            fakultas: "FIKR",
-            singkatan: "MI"
-        },
-        {
-            nama: "Akuntansi",
-            fakultas: "FIKR",
-            singkatan: "AK"
-        },
-        {
-            nama: "Manajemen",
-            fakultas: "FIKR",
-            singkatan: "MJ"
-        },
+        }
     ];
     res.render('prodi', {title: 'Halaman Program Studi', prodi});
 });
