@@ -2,22 +2,38 @@ const express = require("express") // impor modul express
 const app = express() // inisialisasi express
 const port = 3000 // port
 
+app.set('view engine', 'ejs'); 
+
 // route /
 app.get("/", (req, res) => {
     // res.send("Hello");
-    res.sendFile(__dirname + "/index.html");
+    // res.sendFile(__dirname + "/index.html");
+
+    const berita = [
+        {
+            judul: "Berita 1",
+            isi: "Isi berita 1"
+        },
+        {
+            judul: "Berita 2",
+            isi: "Isi berita 2"
+        },
+    ];
+    res.render('index', {title: 'Halaman Home', berita});
 });
 
 // route /about
 app.get("/about", (req, res) => {
     // res.send("About Us");
-    res.sendFile(__dirname + "/about.html");
+    // res.sendFile(__dirname + "/about.html");
+    res.render('about');
 });
 
 // route /contact
 app.get("/contact", (req, res) => {
     // res.send("Contact Us");
-    res.sendFile(__dirname + "/contact.html");
+    // res.sendFile(__dirname + "/contact.html");
+    res.render('contact');
 });
 
 // route /mahasiswa
@@ -49,6 +65,42 @@ app.get("/dosen", (req, res) => {
             },
         ]
     })
+});
+
+app.get("/prodi", (req, res) => {
+   const prodi = [
+        {
+            nama: "Sistem Informasi",
+            fakultas: "FIKR",
+            singkatan: "SI"
+        },
+        {
+            nama: "Informatika",
+            fakultas: "FIKR",
+            singkatan: "IF"
+        },
+        {
+            nama: "Teknik Elektro",
+            fakultas: "FIKR",
+            singkatan: "TE"
+        },
+        {
+            nama: "Manajemen Informatika",
+            fakultas: "FIKR",
+            singkatan: "MI"
+        },
+        {
+            nama: "Akuntansi",
+            fakultas: "FIKR",
+            singkatan: "AK"
+        },
+        {
+            nama: "Manajemen",
+            fakultas: "FIKR",
+            singkatan: "MJ"
+        },
+    ];
+    res.render('prodi', {title: 'Halaman Program Studi', prodi});
 });
 
 // handle route yang tidak terdaftar
