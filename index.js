@@ -1,9 +1,13 @@
 const express = require("express"); // impor modul express
+const expressLayout = require("express-ejs-layouts"); // impor modul express-ejs-layouts
 const app = express(); // inisialisasi express
 const port = 3000; // port
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
+
+app.use(expressLayout);
+app.use(express.static('public'));
 
 // route /
 app.get("/", (req, res) => {
@@ -20,21 +24,21 @@ app.get("/", (req, res) => {
       isi: "Isi berita 2",
     },
   ];
-  res.render("index", { title: "Halaman Home", berita });
+  res.render("index", { title: "Halaman Home", berita, layout: 'main' });
 });
 
 // route /about
 app.get("/about", (req, res) => {
   // res.send("About Us");
   // res.sendFile(__dirname + "/about.html");
-  res.render("about");
+  res.render("about", {title: 'About Us', layout: 'main'});
 });
 
 // route /contact
 app.get("/contact", (req, res) => {
   // res.send("Contact Us");
   // res.sendFile(__dirname + "/contact.html");
-  res.render("contact");
+  res.render("contact", {title: 'Contact Us', layout: 'main'});
 });
 
 // route /mahasiswa
@@ -80,8 +84,23 @@ app.get("/prodi", (req, res) => {
       fakultas: "FIKR",
       singkatan: "IF",
     },
+    {
+      nama: "Manajemen Informatika",
+      fakultas: "FIKR",
+      singkatan: "MI",
+    },
+    {
+      nama: "Akuntansi",
+      fakultas: "FEB",
+      singkatan: "MJ",
+    },
+    {
+      nama: "Manajemen",
+      fakultas: "FEB",
+      singkatan: "MJ",
+    },
   ];
-  res.render("prodi", { title: "Halaman Program Studi", prodi });
+  res.render("prodi", { title: "Halaman Program Studi", prodi, layout: 'main' });
 });
 
 // handle route yang tidak terdaftar
